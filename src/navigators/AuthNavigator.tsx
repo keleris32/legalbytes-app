@@ -10,10 +10,10 @@ const Stack = createStackNavigator();
 const AuthNavigator = () => {
   return (
     <Stack.Navigator
-      initialRouteName={AuthNav.SPLASH_SCREEN}
+      initialRouteName={AuthNav.ONBOARDING}
       screenOptions={{ headerShown: false }}>
-      <Stack.Screen name={AuthNav.SPLASH_SCREEN} component={SplashScreen} />
       <Stack.Screen name={AuthNav.ONBOARDING} component={Onboarding} />
+      <Stack.Screen name={AuthNav.SPLASH_SCREEN} component={SplashScreen} />
     </Stack.Navigator>
   );
 };
