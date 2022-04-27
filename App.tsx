@@ -92,8 +92,6 @@ const App = () => {
   return (
     <View style={styles.container}>
       <AppNavContainer />
-      {/* <SplashScreen /> */}
-      {/* <Onboarding /> */}
     </View>
   );
 };

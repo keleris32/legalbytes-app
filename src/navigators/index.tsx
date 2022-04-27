@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { ActivityIndicator } from 'react-native';
 
-import AuthNavigator from './AuthNavigator';
+// import AuthNavigator from './AuthNavigator';
 import SplashScreen from 'react-native-splash-screen';
+import TabNavigator from './TabNavigator';
 
 const AppNavContainer = () => {
   const [isAuthLoaded, setIsAuthLoaded] = useState<boolean>(false);
@@ -26,7 +27,8 @@ const AppNavContainer = () => {
     <>
       {isAuthLoaded ? (
         <NavigationContainer>
-          <AuthNavigator />
+          {/* <AuthNavigator /> */}
+          <TabNavigator />
         </NavigationContainer>
       ) : (
         <ActivityIndicator />
