@@ -1,4 +1,6 @@
 import { Dimensions } from 'react-native';
+import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
+
 const { width, height } = Dimensions.get('window');
 
 export const COLORS = {
@@ -10,18 +12,18 @@ export const COLORS = {
   error08: 'rgba(246, 86, 93, 0.08)',
 
   // Primary
-  primary: 'rgba(78, 85, 175, 1)',
-  primary80: 'rgba(78, 85, 175, 0.8)',
-  primary60: 'rgba(78, 85, 175, 0.6)',
-  primary20: 'rgba(78, 85, 175, 0.2)',
-  primary08: 'rgba(78, 85, 175, 0.08)',
+  primary: 'rgba(0, 39, 43, 1)',
+  primary80: 'rgba(0, 39, 43, 0.8)',
+  primary60: 'rgba(0, 39, 43, 0.6)',
+  primary20: 'rgba(0, 39, 43, 0.2)',
+  primary08: 'rgba(0, 39, 43, 0.08)',
 
   // Secondary
-  secondary: 'rgba(161, 219, 245, 1)',
-  secondary80: 'rgba(161, 219, 245, 0.8)',
-  secondary60: 'rgba(161, 219, 245, 0.6)',
-  secondary20: 'rgba(161, 219, 245, 0.2)',
-  secondary08: 'rgba(161, 219, 245, 0.08)',
+  secondary: 'rgba(254, 184, 1, 1)',
+  secondary80: 'rgba(254, 184, 1, 0.8)',
+  secondary60: 'rgba(254, 184, 1, 0.6)',
+  secondary20: 'rgba(254, 184, 1, 0.2)',
+  secondary08: 'rgba(254, 184, 1, 0.08)',
 
   // Success
   success: 'rgba(253, 212, 70, 1)',
@@ -58,46 +60,31 @@ export const COLORS = {
   light20: 'rgba(255, 255, 255, 0.2)',
   light08: 'rgba(255, 255, 255, 0.08)',
 
-  // Support 1
-  support1: 'rgba(110, 162, 255, 1)',
-  support1_08: 'rgba(110, 162, 255, 0.08)',
-
-  // Support 2
-  support2: 'rgba(249, 161, 218, 1)',
-  support2_08: 'rgba(249, 161, 218, 0.08)',
-
-  // Support 3
-  support3: 'rgba(0, 210, 224, 1)',
-  support3_08: 'rgba(0, 210, 224, 0.08)',
-
-  // Support 4
-  support4: 'rgba(255, 132, 13, 1)',
-  support4_08: 'rgba(255, 132, 13, 0.08)',
-
-  // Support 5
-  support5: 'rgba(123, 96, 238, 1)',
-  support5_08: 'rgba(123, 96, 238, 0.08)',
+  // Input blue
+  lightBlue: 'rgba(247, 248, 249, 1)',
 };
 
 export const SIZES = {
   // global sizes
-  base: 8,
-  font: 14,
-  radius: 12,
-  padding: 24,
+  base: wp('2%'), // 8
+  radius: wp('3.5%'), // 12
+  font: wp('4%'), // 14
+  padding: wp('6.5%'), // 24
+  margin: wp('7.5%'),
+  largeSize: wp('10%'),
 
   // font sizes
-  largeTitle: 40,
-  h1: 30,
-  h2: 22,
-  h3: 16,
-  h4: 14,
-  h5: 12,
-  body1: 30,
-  body2: 22,
-  body3: 16,
-  body4: 14,
-  body5: 12,
+  largeTitle: wp('10%'), // 40
+  h1: wp('7.5%'), // 30
+  h2: wp('6%'), // 22
+  h3: wp('4.5%'), // 16
+  h4: wp('4%'), // 14
+  h5: wp('3.5%'), // 12
+  body1: wp('7.5%'), // 30
+  body2: wp('6%'), // 22
+  body3: wp('4.5%'), // 16
+  body4: wp('4%'), // 14
+  body5: wp('3.5%'), // 12
 
   // app dimensions
   width,
