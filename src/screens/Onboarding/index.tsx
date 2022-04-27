@@ -1,57 +1,36 @@
 import React from 'react';
 import { View, Animated, StyleSheet, Text, Image } from 'react-native';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 
+import { CustomButton } from '../../components';
 import { COLORS, SIZES, constants, FONTS, images } from '../../constants';
+import Dots from './Dots';
+import { AuthNavigatorList } from '../../types/authNavigator';
+import { AuthNav } from '../../enums/authNavigator';
 
-const Onboarding = () => {
+type Props = NativeStackScreenProps<AuthNavigatorList, AuthNav.ONBOARDING>;
+
+const Onboarding = ({ navigation }: Props) => {
   const scrollX = React.useRef(new Animated.Value(0)).current;
 
-  const Dots = () => {
-    const dotPosition = Animated.divide(scrollX, SIZES.width);
-    return (
-      <View style={styles.dotsContainer}>
-        {constants.walkthrough.map((_item, index) => {
-          const dotColor = dotPosition.interpolate({
-            inputRange: [index - 1, index, index + 1],
-            outputRange: [COLORS.dark08, '#FEB801', COLORS.dark08],
-            extrapolate: 'clamp',
-          });
-          return (
-            <Animated.View
-              key={`dot-${index}`}
-              style={{
-                borderRadius: 5,
-                marginHorizontal: 6,
-                width: 10,
-                height: 10,
-                backgroundColor: dotColor,
-              }}
-            />
-          );
-        })}
-      </View>
-    );
-  };
+  const navigateToLogin = (): void => navigation.replace(AuthNav.LOGIN);
+  const disabled: boolean = false;
 
   function renderFooter() {
     return (
       <View style={styles.footerContainer}>
-        <Dots />
+        <Dots scrollX={scrollX} />
 
-        <View
-          style={{
-            height: 55,
-            width: 200,
-            justifyContent: 'center',
-            alignItems: 'center',
-            borderRadius: SIZES.radius,
-            backgroundColor: '#00272B',
-          }}>
-          <Text style={{ color: '#fff', ...FONTS.h4 }}>Get Started</Text>
+        <View style={{ width: wp('80%') }}>
+          <CustomButton
+            onPress={navigateToLogin}
+            disabled={disabled}
+            text="Get Started"
+          />
         </View>
       </View>
     );
@@ -130,7 +109,7 @@ const styles = StyleSheet.create({
   },
 
   textWrapper: {
-    height: SIZES.height * 0.35,
+    height: hp('40%'),
     alignItems: 'center',
     justifyContent: 'flex-start',
     paddingHorizontal: SIZES.padding,
@@ -138,7 +117,7 @@ const styles = StyleSheet.create({
 
   title: {
     ...FONTS.h1,
-    color: '#000',
+    color: COLORS.dark,
   },
 
   subTitle: {
@@ -153,24 +132,7 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-    height: SIZES.height * 0.2,
+    height: hp('25%'),
     alignItems: 'center',
-    justifyContent: 'space-between',
-    paddingHorizontal: SIZES.padding,
-    paddingVertical: SIZES.height > 700 ? SIZES.padding : 20,
   },
-
-  dotsContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-
-  //   dot: {
-  //     borderRadius: 5,
-  //     marginHorizontal: 6,
-  //     width: 10,
-  //     height: 10,
-  //     backgroundColor: '#FEB801',
-  //   },
 });
