@@ -5,15 +5,17 @@ import FeatherIcon from 'react-native-vector-icons/Feather';
 import Iconicons from 'react-native-vector-icons/Ionicons';
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
-import { TabNavigatorList } from '../types/tabNavigator';
+import { TabNavigatorList } from '../types/navigators/tabNavigator';
 import { TabNav } from '../enums/tabNavigator';
-import { History, Home, Profile, Search } from '../screens';
+import { Profile } from '../screens';
 import { COLORS, FONTS, SIZES } from '../constants';
 import { Platform } from 'react-native';
 import {
-  CustomTabNavHeaderTitle,
-  CustomTabNavHeaderBackground,
-} from '../components/CustomTabNavHeader';
+  HomeStackNavigator,
+  SearchStackNavigator,
+  HistoryStackNavigator,
+} from '../screenStacks';
+import { CustomTabNavHeaderTitle } from '../components/CustomTabNavHeader';
 
 const Tab = createBottomTabNavigator<TabNavigatorList>();
 
@@ -21,8 +23,6 @@ const TabNavigator = () => {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
-        headerTitle: () => <CustomTabNavHeaderTitle />,
-        headerBackground: () => <CustomTabNavHeaderBackground />,
         tabBarHideOnKeyboard: true,
         tabBarActiveTintColor: COLORS.dark,
         tabBarInactiveTintColor: COLORS.grey,
@@ -75,10 +75,33 @@ const TabNavigator = () => {
           }
         },
       })}>
-      <Tab.Screen name={TabNav.HOME} component={Home} />
-      <Tab.Screen name={TabNav.SEARCH} component={Search} />
-      <Tab.Screen name={TabNav.HISTORY} component={History} />
-      <Tab.Screen name={TabNav.PROFILE} component={Profile} />
+      <Tab.Screen
+        name={TabNav.HOME}
+        component={HomeStackNavigator}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Tab.Screen
+        name={TabNav.SEARCH}
+        component={SearchStackNavigator}
+        options={{ headerShown: false }}
+      />
+      <Tab.Screen
+        name={TabNav.HISTORY}
+        component={HistoryStackNavigator}
+        options={{ headerShown: false }}
+      />
+      <Tab.Screen
+        name={TabNav.PROFILE}
+        component={Profile}
+        options={{
+          headerTitle: () => <CustomTabNavHeaderTitle />,
+          headerStyle: {
+            backgroundColor: COLORS.primary,
+          },
+        }}
+      />
     </Tab.Navigator>
   );
 };
