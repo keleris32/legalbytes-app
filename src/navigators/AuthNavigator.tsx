@@ -1,10 +1,9 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import { Onboarding, Login, ForgotPassword } from '../screens';
+import { Onboarding, Login, ForgotPassword, SignUp } from '../screens';
 import { AuthNav } from '../enums/authNavigator';
-import { AuthNavigatorList } from '../types/authNavigator';
-import SignUp from '../screens/SignUp';
+import { AuthNavigatorList } from '../types/navigators/authNavigator';
 
 const Stack = createStackNavigator<AuthNavigatorList>();
 

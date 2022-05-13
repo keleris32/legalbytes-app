@@ -21,12 +21,13 @@ const walkthrough = [
   {
     id: '1',
     title: 'Easy search',
-    sub_title: 'Find cases with easy using advanced sorting',
+    sub_title: 'Find cases with ease using advanced sorting',
   },
   {
     id: '2',
     title: 'Convenient access',
-    sub_title: 'Get any case at your finger-tips even with an internet access',
+    sub_title:
+      'Get any case at your finger-tips even without an internet access',
   },
   //   {
   //     id: '3',

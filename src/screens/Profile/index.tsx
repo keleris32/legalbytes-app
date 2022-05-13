@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import {
-  //   heightPercentageToDP as hp,
-  widthPercentageToDP as wp,
-} from 'react-native-responsive-screen';
+import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 
 import { COLORS, FONTS, SIZES } from '../../constants';
+import { UpdateUserInfo, UpdatePassword } from '../../layouts';
 
 const Profile = () => {
   const [activeTab, setActiveTab] = useState({
@@ -51,6 +49,10 @@ const Profile = () => {
             </Text>
           </View>
         </TouchableOpacity>
+      </View>
+
+      <View style={{ alignItems: 'center', paddingVertical: SIZES.radius }}>
+        {activeTab.basicInfo ? <UpdateUserInfo /> : <UpdatePassword />}
       </View>
     </View>
   );

@@ -9,7 +9,7 @@ import {
 import { CustomButton } from '../../components';
 import { COLORS, SIZES, constants, FONTS, images } from '../../constants';
 import Dots from './Dots';
-import { AuthNavigatorList } from '../../types/authNavigator';
+import { AuthNavigatorList } from '../../types/navigators/authNavigator';
 import { AuthNav } from '../../enums/authNavigator';
 
 type Props = NativeStackScreenProps<AuthNavigatorList, AuthNav.ONBOARDING>;

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   StyleSheet,
   Text,
@@ -17,24 +17,28 @@ import { SIZES, COLORS, FONTS } from '../../constants';
 
 interface DataTypes {
   id: string;
+  name: string;
   type: string;
 }
 
 const DATA: DataTypes[] = [
-  { id: '1', type: 'Non-Student (Practioner)' },
-  { id: '2', type: 'Student' },
+  { id: '1', name: 'Non-Student (Practioner)', type: 'practioner' },
+  { id: '2', name: 'Student', type: 'student' },
 ];
 
 interface Props {
   isModalVisible: boolean;
   toggleModal: () => void;
+  selectedUserIdentity: string;
+  setSelectedUserIdentity: any;
 }
 
-const CustomModal = ({ isModalVisible, toggleModal }: Props) => {
-  const [selectedUserIdentity, setSelectedUserIdentity] = useState<string>(
-    'Please select an identity',
-  );
-
+const CustomModal = ({
+  isModalVisible,
+  toggleModal,
+  selectedUserIdentity,
+  setSelectedUserIdentity,
+}: Props) => {
   const selectIdentity = ({ type }: DataTypes) => {
     setSelectedUserIdentity(type);
 
@@ -63,7 +67,7 @@ const CustomModal = ({ isModalVisible, toggleModal }: Props) => {
                 <TouchableOpacity onPress={() => selectIdentity(item)}>
                   <View style={styles.optionContainer}>
                     <Text style={{ ...FONTS.h3, color: COLORS.dark }}>
-                      {item.type}
+                      {item.name}
                     </Text>
                   </View>
                 </TouchableOpacity>

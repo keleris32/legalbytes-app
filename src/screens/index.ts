@@ -1,7 +1,10 @@
 export { default as Onboarding } from './Onboarding';
 export { default as Login } from './Login';
 export { default as ForgotPassword } from './ForgotPassword';
+export { default as SignUp } from './SignUp';
 export { default as Home } from './Home';
 export { default as Search } from './Search';
 export { default as History } from './History';
 export { default as Profile } from './Profile';
+export { default as Case } from './Case';
+export { default as Result } from './Result';

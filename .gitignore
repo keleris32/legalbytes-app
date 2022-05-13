@@ -30,6 +30,10 @@ local.properties
 *.iml
 *.hprof
 
+# environment variables
+.env
+.env.local
+
 # node.js
 #
 node_modules/

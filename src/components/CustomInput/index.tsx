@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  KeyboardTypeOptions,
+  // KeyboardTypeOptions,
   StyleSheet,
   TextInput,
   View,
@@ -15,12 +15,12 @@ import {
 
 import { COLORS, FONTS, SIZES } from '../../constants';
 
-interface Props {
-  placeholder: string;
-  keyboardType: KeyboardTypeOptions | undefined;
-}
+// interface Props {
+//   placeholder: string;
+//   keyboardType: KeyboardTypeOptions | undefined;
+// }
 
-const CustomInput = ({ placeholder, keyboardType }: Props) => {
+const CustomInput = ({ placeholder, keyboardType, ...props }: any) => {
   return (
     <View style={styles.container}>
       <TextInput
@@ -28,14 +28,17 @@ const CustomInput = ({ placeholder, keyboardType }: Props) => {
         keyboardType={keyboardType}
         placeholder={placeholder}
         placeholderTextColor={COLORS.grey}
+        {...props}
         style={styles.input}
       />
       {placeholder === 'Password' && (
         <TouchableOpacity
           activeOpacity={0.6}
-          // onPress={() => props.setIsPasswordHidden(!props.isPasswordHidden)}
-        >
-          <PasswordIcon name="eye-off" style={styles.passwordIcon} />
+          onPress={() => props.setIsPasswordHidden(!props.isPasswordHidden)}>
+          <PasswordIcon
+            name={props.isPasswordHidden ? 'eye-off' : 'eye'}
+            style={styles.passwordIcon}
+          />
         </TouchableOpacity>
       )}
     </View>

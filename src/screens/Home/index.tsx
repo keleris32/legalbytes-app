@@ -1,11 +1,17 @@
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import {
-  //   heightPercentageToDP as hp,
-  widthPercentageToDP as wp,
-} from 'react-native-responsive-screen';
+import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 
 import { COLORS, FONTS, SIZES } from '../../constants';
+import { HomeStackNav } from '../../enums/homeStackNavigator';
+import { Cases, Statutes } from '../../layouts';
+import { HomeStackNavigatorList } from '../../types/navigators/homeStackNavigator';
+
+export type HomeNavProps = NativeStackScreenProps<
+  HomeStackNavigatorList,
+  HomeStackNav.CASE
+>;
 
 const Home = () => {
   const [activeTab, setActiveTab] = useState({
@@ -49,6 +55,13 @@ const Home = () => {
             </Text>
           </View>
         </TouchableOpacity>
+      </View>
+      <View
+        style={{
+          paddingVertical: SIZES.radius,
+          paddingHorizontal: SIZES.radius,
+        }}>
+        {activeTab.statutes ? <Statutes /> : <Cases />}
       </View>
     </View>
   );

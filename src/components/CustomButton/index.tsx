@@ -23,7 +23,7 @@ const CustomButton = ({ onPress, disabled, text }: Props) => {
     <TouchableOpacity
       style={[
         styles.container,
-        { backgroundColor: disabled ? COLORS.lightGrey : COLORS.primary },
+        { backgroundColor: disabled ? COLORS.grey : COLORS.primary },
       ]}
       activeOpacity={0.6}
       onPress={onPress}

@@ -9,25 +9,21 @@
  */
 
 import React from 'react';
-import {
-  // SafeAreaView,
-  // ScrollView,
-  // StatusBar,
-  // StyleSheet,
-  // useColorScheme,
-  View,
-  // Image,
-  StyleSheet,
-  // Text,
-  // StatusBar,
-} from 'react-native';
-// import {
-//   widthPercentageToDP as wp,
-//   heightPercentageToDP as hp,
-// } from 'react-native-responsive-screen';
-// import { SplashScreen } from './src/screens';
-// import Onboarding from './src/screens/Onboarding';
+import // SafeAreaView,
+// ScrollView,
+// StatusBar,
+// StyleSheet,
+// useColorScheme,
+// Text,
+// StatusBar,
+'react-native';
+import GlobalProvider from './src/context/provider';
 import AppNavContainer from './src/navigators';
+import { LogBox } from 'react-native';
+
+LogBox.ignoreLogs([
+  "[react-native-gesture-handler] Seems like you're using an old API with gesture components, check out new Gestures system!",
+]);
 
 // import {
 //   Colors,
@@ -67,39 +63,12 @@ import AppNavContainer from './src/navigators';
 
 //
 
-// import { icons } from './src/constants'
-
-// const styles = StyleSheet.create({
-//   sectionContainer: {
-//     marginTop: 32,
-//     paddingHorizontal: 24,
-//   },
-//   sectionTitle: {
-//     fontSize: 24,
-//     fontWeight: '600',
-//   },
-//   sectionDescription: {
-//     marginTop: 8,
-//     fontSize: 18,
-//     fontWeight: '400',
-//   },
-//   highlight: {
-//     fontWeight: '700',
-//   },
-// });
-
 const App = () => {
   return (
-    <View style={styles.container}>
+    <GlobalProvider>
       <AppNavContainer />
-    </View>
+    </GlobalProvider>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
 
 export default App;
