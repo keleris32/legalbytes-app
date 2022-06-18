@@ -1,4 +1,6 @@
 export enum HomeStackNav {
-  HOME = 'HOME',
-  CASE = 'CASE',
+  FEED = 'Feed',
+  CASE = 'Case',
+  STATUE = 'Statute',
+  PLANS = 'Plans',
 }

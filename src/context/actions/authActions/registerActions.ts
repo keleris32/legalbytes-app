@@ -39,6 +39,8 @@ export default ({
       // If the Login operation is successfully, store the user object in storage
       AsyncStorage.setItem('userData', JSON.stringify(response.data.data.user));
 
+      AsyncStorage.setItem('token', response.data.data.token);
+
       registerDispatch({
         type: RegisterActionType.REGISTER_SUCCESS,
         payload: response.data.data.user,

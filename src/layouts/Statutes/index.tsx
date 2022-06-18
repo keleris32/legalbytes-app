@@ -1,6 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useContext } from 'react';
-import { View, TouchableOpacity } from 'react-native';
+import { ScrollView, TouchableOpacity } from 'react-native';
 
 import { Card } from '../../components';
 import { ActionType } from '../../context/actionTypes/selectedCaseActionType';
@@ -22,11 +22,16 @@ const Statutes = () => {
     });
 
     // @ts-ignore
-    navigation.navigate(HomeStackNav.CASE);
+    navigation.navigate(HomeStackNav.STATUE);
   };
 
   return (
-    <View>
+    <ScrollView
+      showsVerticalScrollIndicator={false}
+      alwaysBounceVertical={true}
+      contentContainerStyle={{
+        flexGrow: 1,
+      }}>
       {mockData.map((data: any) => (
         <TouchableOpacity
           key={data.id}
@@ -42,7 +47,7 @@ const Statutes = () => {
           />
         </TouchableOpacity>
       ))}
-    </View>
+    </ScrollView>
   );
 };
 

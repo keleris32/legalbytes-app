@@ -1,7 +1,7 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import { Home, Case } from '../../screens';
+import { Home, Case, SubscriptionPlans } from '../../screens';
 import { HomeStackNav } from '../../enums/homeStackNavigator';
 import { HomeStackNavigatorList } from '../../types/navigators/homeStackNavigator';
 import { CustomTabNavHeaderTitle } from '../../components/CustomTabNavHeader';
@@ -11,9 +11,9 @@ const Stack = createStackNavigator<HomeStackNavigatorList>();
 
 const HomeStackNavigator = () => {
   return (
-    <Stack.Navigator initialRouteName={HomeStackNav.HOME}>
+    <Stack.Navigator initialRouteName={HomeStackNav.FEED}>
       <Stack.Screen
-        name={HomeStackNav.HOME}
+        name={HomeStackNav.FEED}
         component={Home}
         options={{
           headerTitle: () => <CustomTabNavHeaderTitle />,
@@ -23,8 +23,28 @@ const HomeStackNavigator = () => {
         }}
       />
       <Stack.Screen
+        name={HomeStackNav.STATUE}
+        component={Case}
+        options={{
+          headerStyle: {
+            backgroundColor: COLORS.primary,
+          },
+          headerTintColor: COLORS.light,
+        }}
+      />
+      <Stack.Screen
         name={HomeStackNav.CASE}
         component={Case}
+        options={{
+          headerStyle: {
+            backgroundColor: COLORS.primary,
+          },
+          headerTintColor: COLORS.light,
+        }}
+      />
+      <Stack.Screen
+        name={HomeStackNav.PLANS}
+        component={SubscriptionPlans}
         options={{
           headerStyle: {
             backgroundColor: COLORS.primary,

@@ -30,6 +30,7 @@
     "react-native-screens": "^3.13.1",
     "react-native-splash-screen": "^3.3.0",
     "react-native-vector-icons": "^9.1.0",
+    "react-native-webview": "^11.18.2",
     "toastify-react-native": "^2.0.0",
     "yup": "^0.32.11"
   },

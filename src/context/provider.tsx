@@ -9,6 +9,7 @@ import {
   registerInitialState,
   registerReducer,
 } from './reducers/authReducer/registerReducer';
+import { getSubInitialState, getSubReducer } from './reducers/getSubReducer';
 import { getUserInitialState, getUserReducer } from './reducers/getUserReducer';
 import {
   selectedCaseInitialState,
@@ -31,6 +32,11 @@ const GlobalProvider: React.FC = ({ children }) => {
     getUserReducer,
     getUserInitialState,
   );
+
+  const [getSubState, getSubDispatch] = useReducer(
+    getSubReducer,
+    getSubInitialState,
+  );
   const [selectedCaseState, selectedCaseDispatch] = useReducer(
     selectedCaseReducer,
     selectedCaseInitialState,
@@ -49,6 +55,8 @@ const GlobalProvider: React.FC = ({ children }) => {
         getUserDispatch,
         selectedCaseState,
         selectedCaseDispatch,
+        getSubState,
+        getSubDispatch,
       }}>
       {children}
     </GlobalContext.Provider>

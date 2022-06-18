@@ -15,6 +15,8 @@ export const CustomTabNavHeaderTitle = () => {
   const logoutUser = (): void => {
     AsyncStorage.removeItem('userData');
 
+    AsyncStorage.removeItem('token');
+
     authDispatch({
       type: ActionType.DEAUTHENTICATE,
     });

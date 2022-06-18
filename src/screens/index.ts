@@ -8,3 +8,4 @@ export { default as History } from './History';
 export { default as Profile } from './Profile';
 export { default as Case } from './Case';
 export { default as Result } from './Result';
+export { default as SubscriptionPlans } from './SubscriptionPlans';

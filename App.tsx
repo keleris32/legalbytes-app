@@ -9,14 +9,6 @@
  */
 
 import React from 'react';
-import // SafeAreaView,
-// ScrollView,
-// StatusBar,
-// StyleSheet,
-// useColorScheme,
-// Text,
-// StatusBar,
-'react-native';
 import GlobalProvider from './src/context/provider';
 import AppNavContainer from './src/navigators';
 import { LogBox } from 'react-native';

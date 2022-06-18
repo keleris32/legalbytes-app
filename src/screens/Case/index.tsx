@@ -1,13 +1,48 @@
-import { StyleSheet, Text, View, ScrollView } from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  ScrollView,
+  TouchableOpacity,
+  // NativeModules,
+} from 'react-native';
 import React, { useContext } from 'react';
+import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
 
 import { COLORS, FONTS, SIZES } from '../../constants';
 import { GlobalContext } from '../../context/provider';
+import Iconicons from 'react-native-vector-icons/MaterialIcons';
+import { useNavigation } from '@react-navigation/native';
+import { HomeStackNav } from '../../enums/homeStackNavigator';
 
 const Case = () => {
+  const navigation = useNavigation();
+
+  const { getSubState } = useContext(GlobalContext);
+
+  const navigateToPlans = () => {
+    // @ts-ignore
+    navigation.navigate(HomeStackNav.PLANS);
+  };
+
   const {
     selectedCaseState: { data },
   } = useContext(GlobalContext);
+
+  // const { Lucene } = NativeModules;
+  // const handlePress = () => {
+  //   Lucene.sayHello('John Doe', (err: any, message: any) => {
+  //     if (err) return console.log(err);
+  //     console.log('message', message);
+  //   });
+  // };
+
+  console.log(getSubState?.data);
+
+  const test = data.judgement_delivered.slice(
+    0,
+    data.judgement_delivered.length * 0.05,
+  );
 
   return (
     <ScrollView
@@ -59,7 +94,35 @@ const Case = () => {
             Judgement Delivered
           </Text>
           <View style={{ marginVertical: SIZES.radius }}>
-            <Text style={{ ...FONTS.body4 }}>{data?.judgement_delivered}</Text>
+            {getSubState.data ? (
+              <Text style={{ ...FONTS.body4 }}>
+                {data?.judgement_delivered}
+              </Text>
+            ) : (
+              <>
+                <Text style={{ ...FONTS.body4 }}>{test}</Text>
+                <TouchableOpacity
+                  activeOpacity={0.3}
+                  style={{ marginTop: SIZES.radius }}
+                  onPress={navigateToPlans}>
+                  <Text
+                    style={{
+                      ...FONTS.h3,
+                      color: COLORS.dark,
+                      textAlign: 'center',
+                    }}>
+                    Show More
+                  </Text>
+                  <View>
+                    <Iconicons
+                      name="keyboard-arrow-down"
+                      style={{ fontSize: wp('10%'), textAlign: 'center' }}
+                      color={COLORS.primary}
+                    />
+                  </View>
+                </TouchableOpacity>
+              </>
+            )}
           </View>
         </View>
       </View>

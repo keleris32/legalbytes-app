@@ -1,33 +1,67 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import {
   StyleSheet,
   Text,
   View,
   ScrollView,
   TouchableOpacity,
+  Alert,
 } from 'react-native';
-import { widthPercentageToDP as wp } from 'react-native-responsive-screen';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
+import ToastManager, { Toast } from 'toastify-react-native';
 
 import { COLORS, SIZES, FONTS } from '../../constants';
 import { Formik } from 'formik';
 import { updateUserInfoValidationSchema } from './validationSchema';
 import { CustomButton, CustomInput, CustomModal } from '../../components';
+import axiosInstance from '../../config/axiosInterceptor';
+import { GlobalContext } from '../../context/provider';
+import { ActionType } from '../../context/actionTypes/getUserActionType';
 
 const UpdateUserInfo = () => {
+  const { getUserState, getUserDispatch } = useContext(GlobalContext);
+
   const [loading, setLoading] = useState<boolean>(false);
   const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
   const [selectedUserIdentity, setSelectedUserIdentity] = useState<string>(
-    'Please select an identity',
+    getUserState?.data?.user_role,
   );
 
   const toggleModal = (): void => setIsModalVisible(!isModalVisible);
 
   const submitForm = async (formData: any): Promise<void> => {
+    let userObj = {
+      firstname: formData?.firstName,
+      lastname: formData?.lastName,
+      username: formData?.firstName,
+      phone: formData?.phoneNumber,
+      email: formData?.email,
+      user_role: selectedUserIdentity,
+    };
+
     try {
       setLoading(true);
-      console.log(formData);
-    } catch {
-      console.log('error');
+
+      const response = await axiosInstance.put(
+        `/auth/user/${getUserState?.data?.id}/update`,
+        userObj,
+      );
+
+      getUserDispatch({
+        type: ActionType.GET_USER,
+        payload: response?.data?.data?.user,
+      }),
+        Alert.alert('Success', 'Your profile has been updated successfully!', [
+          {
+            text: 'OK',
+            onPress: () => {},
+          },
+        ]);
+    } catch (error) {
+      Toast.error('An error occurred, please try agaun later!');
     } finally {
       setLoading(false);
     }
@@ -36,10 +70,10 @@ const UpdateUserInfo = () => {
   return (
     <Formik
       initialValues={{
-        firstName: '',
-        lastName: '',
-        phoneNumber: '',
-        email: '',
+        firstName: getUserState?.data?.firstname,
+        lastName: getUserState?.data?.lastname,
+        phoneNumber: getUserState?.data?.phone,
+        email: getUserState?.data?.email,
         identity: '',
       }}
       validateOnMount={true}
@@ -62,6 +96,7 @@ const UpdateUserInfo = () => {
             flexGrow: 1,
           }}>
           <View>
+            <ToastManager width={wp('80%')} positionValue={hp('0%')} />
             <View style={{ width: wp('80%') }}>
               <CustomInput
                 placeholder="First Name"

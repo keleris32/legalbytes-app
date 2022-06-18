@@ -10,7 +10,8 @@ import { HomeStackNavigatorList } from '../../types/navigators/homeStackNavigato
 
 export type HomeNavProps = NativeStackScreenProps<
   HomeStackNavigatorList,
-  HomeStackNav.CASE
+  HomeStackNav.CASE,
+  HomeStackNav.PLANS
 >;
 
 const Home = () => {

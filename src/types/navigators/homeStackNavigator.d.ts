@@ -1,4 +1,6 @@
 export type HomeStackNavigatorList = {
-  HOME: undefined;
-  CASE: undefined;
+  Feed: undefined;
+  Case: undefined;
+  Statute: undefined;
+  Plans: undefined;
 };
